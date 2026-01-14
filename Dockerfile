@@ -1,6 +1,7 @@
 FROM eclipse-temurin:25-jre
 
-RUN apk add --no-cache bash unzip
+RUN apt-get update && \
+    apt-get install -y --no-cache bash unzip
 
 RUN mkdir -p /hytale && \
     mkdir -p /hytale/auth && \
