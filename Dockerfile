@@ -2,7 +2,8 @@ FROM ubuntu:24.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get -y install openjdk-25-jre
+RUN apt-get update \
+    apt-get -y install openjdk-25-jre
 
 RUN useradd hytale --home /home/hytale --uid 1000 --gid 1000 --shell /bin/bash --disabled-password --gecos ""
 
