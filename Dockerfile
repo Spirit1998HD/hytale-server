@@ -1,16 +1,9 @@
-FROM ubuntu:24.04
+FROM eclipse-temurin:25-jre
 
-ARG DEBIAN_FRONTEND=noninteractive
+RUN mkdir -p /hytale && \
+    mkdir -p /hytale/auth && \
+    mkdir -p /hytale/server && \
 
-RUN apt-get update && \
-    apt-get -y install openjdk-25-jre
+COPY --chmod=755 ./resources/init.sh /hytale.sh
 
-RUN usermod -dm /home/hytale ubuntu && \
-    rm -rf /home/ubuntu
-
-COPY --chown=ubuntu:ubuntu ./resources/init.sh /init.sh
-RUN ["chmod", "+x", "/init.sh"]
-
-USER ubuntu
-
-ENTRYPOINT ["/init.sh"]
+ENTRYPOINT ["/hytale.sh"]
